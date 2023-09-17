@@ -72,23 +72,20 @@ void addEmployeeToFile() {
      << "Weekly wage : " << weeklyWage << endl
      << "Tax : " << tax() <<endl 
      << "Pension : " << pension() << endl
-     << "Net salary : " << netsalary() << endl;
+     << "Net salary : " << netsalary() << endl
+     << "------------------------------------------"<<endl;
     file.close();
 
 }
 
-static void displayAllEmployees() {
+void displayAllEmployees() {
     ifstream file("employees.txt");
-    int id;
-    string n;
-    double s;
-    float h;
-    string pos;
-    while (file >> id >> n >> s>> pos) {
-       Employee e;
-        e.setEmployeeDetails(id, n, s,pos);
-        e.displayEmployeeDetails();
-    }
+    string line;
+    
+    while (getline(file, line)){
+            cout << line<<endl;
+        }
+    
     file.close();
 }
 };
@@ -102,6 +99,7 @@ int main() {
     string possblepositons[6] {"acountant", "security","maintainance","janitor","boss"};
     string position;
     int input;
+    ifstream fileIn;
 
     while (1) {
         cout << "Payroll System Menu\n";
@@ -143,7 +141,8 @@ int main() {
                 break;
 
             case 2:
-                Employee::displayAllEmployees();
+                emp.displayAllEmployees();
+                
                 break;
 
             case 3:
